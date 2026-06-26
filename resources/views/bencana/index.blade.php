@@ -4,6 +4,30 @@
 
 @push('styles')
 <style>
+/* ── Weather widget ─────────────────────────────────────── */
+.weather-card {
+    border-radius: 16px;
+    transition: transform .18s, box-shadow .18s;
+    overflow: hidden;
+}
+.weather-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.12) !important;
+}
+.weather-icon-wrap {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+.weather-temp {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1;
+}
+.weather-sub { font-size: 0.74rem; }
+
 /* ── Map legend ─────────────────────────────────────────── */
 .map-legend {
     background: #fff;
@@ -53,6 +77,86 @@
         <span class="material-symbols-outlined msf text-danger ms-lg">warning</span>Data Bencana
     </h2>
     <p class="text-muted mb-4">Informasi bencana alam terkini di Kota Bandung</p>
+
+    {{-- ══ Cuaca Jawa Barat ══ --}}
+    @if(count($weatherData) > 0)
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-header border-0 py-3 px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined msf ms-sm text-info">partly_cloudy_day</span>
+                Cuaca Terkini — Jawa Barat
+            </h6>
+            <span class="text-muted small d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined msf ms-sm">schedule</span>
+                Diperbarui setiap 30 menit &middot; Sumber: OpenWeather
+            </span>
+        </div>
+        <div class="card-body px-4 pb-4 pt-2">
+            <div class="row g-3">
+                @foreach($weatherData as $w)
+                @php
+                    $iconId = substr($w['ikon_kode'], 0, 2);
+                    $isNight = str_ends_with($w['ikon_kode'], 'n');
+                    $matIcon = match($iconId) {
+                        '01' => $isNight ? 'bedtime'            : 'wb_sunny',
+                        '02' => $isNight ? 'partly_cloudy_night': 'partly_cloudy_day',
+                        '03', '04' => 'cloud',
+                        '09', '10' => 'rainy',
+                        '11' => 'thunderstorm',
+                        '13' => 'weather_snowy',
+                        '50' => 'foggy',
+                        default   => 'wb_cloudy',
+                    };
+                    $bgClass = match($iconId) {
+                        '01' => 'bg-warning bg-opacity-10 text-warning',
+                        '02' => 'bg-info bg-opacity-10 text-info',
+                        '03', '04' => 'bg-secondary bg-opacity-10 text-secondary',
+                        '09', '10' => 'bg-primary bg-opacity-10 text-primary',
+                        '11' => 'bg-danger bg-opacity-10 text-danger',
+                        '13' => 'bg-info bg-opacity-10 text-info',
+                        '50' => 'bg-secondary bg-opacity-10 text-secondary',
+                        default    => 'bg-secondary bg-opacity-10 text-secondary',
+                    };
+                @endphp
+                <div class="col-6 col-md-4 col-xl-2">
+                    <div class="weather-card card border-0 shadow-sm h-100 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="weather-icon-wrap {{ $bgClass }}">
+                                <span class="material-symbols-outlined msf" style="font-size:26px;font-variation-settings:'FILL' 1;">{{ $matIcon }}</span>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="fw-bold text-truncate" style="font-size:.85rem;">{{ $w['kota'] }}</div>
+                                <div class="weather-sub text-muted text-truncate">{{ $w['deskripsi'] }}</div>
+                            </div>
+                        </div>
+                        <div class="weather-temp mt-1">{{ $w['suhu'] }}<span class="fs-5 fw-normal">°C</span></div>
+                        <div class="d-flex gap-3 mt-2">
+                            <span class="weather-sub text-muted d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined msf ms-sm">water_drop</span>{{ $w['kelembaban'] }}%
+                            </span>
+                            <span class="weather-sub text-muted d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined msf ms-sm">air</span>{{ $w['angin'] }} km/j
+                            </span>
+                        </div>
+                        <div class="weather-sub text-muted mt-1 d-flex align-items-center gap-1">
+                            <span class="material-symbols-outlined msf ms-sm">thermostat</span>
+                            Terasa {{ $w['terasa'] }}°C
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @elseif(config('services.openweather.key') === 'your_openweather_api_key_here' || !config('services.openweather.key'))
+    <div class="alert alert-info border-0 rounded-4 d-flex align-items-center gap-3 mb-4 shadow-sm" role="alert">
+        <span class="material-symbols-outlined msf ms-lg text-info flex-shrink-0">partly_cloudy_day</span>
+        <div>
+            <strong>Informasi Cuaca Jawa Barat</strong><br>
+            <small class="text-muted">Tambahkan API key OpenWeather di file <code>.env</code> pada variabel <code>OPENWEATHER_API_KEY</code> untuk menampilkan data cuaca terkini.</small>
+        </div>
+    </div>
+    @endif
 
     {{-- Peta --}}
     <div class="card border-0 shadow-sm rounded-4 mb-4">
