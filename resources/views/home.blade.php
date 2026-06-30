@@ -515,7 +515,7 @@
         @else
         <div class="row g-4">
             {{-- Cards --}}
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <div class="row g-3" id="bencanaCards">
                     @foreach($bencanaAktif->take(4) as $b)
                     @php
@@ -559,7 +559,7 @@
             </div>
 
             {{-- Mini Map --}}
-            <div class="col-lg-5 reveal" style="transition-delay:.1s">
+            <div class="col-lg-6 reveal" style="transition-delay:.1s">
                 <div class="card border-0 shadow-sm rounded-4 h-100">
                     <div class="card-header border-0 py-3 px-4 d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
@@ -570,7 +570,7 @@
                         </a>
                     </div>
                     <div class="card-body p-0">
-                        <div id="homeMap" style="height:340px;border-radius:0 0 1rem 1rem;"></div>
+                        <div id="homeMap" style="height:480px;border-radius:0 0 1rem 1rem;"></div>
                     </div>
                 </div>
             </div>
@@ -789,7 +789,7 @@
 <script>
 (function () {
     /* ── Typewriter ─────────────────────────────────────── */
-    const phrases = ['Peringatan Dini\nBencana', 'Pantauan Bencana\nReal-time', 'Keselamatan\nWarga Bandung'];
+    const phrases = ['Peringatan Dini Bencana', 'Pemantauan Real-time', 'Keselamatan Warga Kota'];
     const el = document.getElementById('heroTypewriter');
     const cursor = document.getElementById('twCursor');
     if (el) {
@@ -798,12 +798,12 @@
             const phrase = phrases[pi];
             if (!deleting) {
                 ci++;
-                el.innerHTML = phrase.slice(0, ci).replace('\n', '<br>');
+                el.textContent = phrase.slice(0, ci);
                 if (ci === phrase.length) { deleting = true; setTimeout(tick, 2200); return; }
                 setTimeout(tick, 68);
             } else {
                 ci--;
-                el.innerHTML = phrase.slice(0, ci).replace('\n', '<br>');
+                el.textContent = phrase.slice(0, ci);
                 if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 380); return; }
                 setTimeout(tick, 38);
             }
