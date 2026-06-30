@@ -20,18 +20,6 @@
     100% { transform: translate(28px,-18px) scale(1.1); }
 }
 
-/* Typewriter cursor */
-.tw-cursor {
-    display: inline-block;
-    width: 3px;
-    background: #ffd700;
-    animation: blink .7s step-end infinite;
-    margin-left: 2px;
-    border-radius: 2px;
-    vertical-align: baseline;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
 /* Live pulse badge */
 .live-badge {
     display: inline-flex;
@@ -371,7 +359,7 @@
                 <h1 class="display-4 fw-black mb-3 lh-sm">
                     Sistem Informasi<br>
                     <span style="background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                        <span id="heroTypewriter"></span><span class="tw-cursor" id="twCursor"></span>
+                        Peringatan Dini Bencana
                     </span>
                 </h1>
                 <p class="fs-5 text-white-50 mb-4 lh-base" style="max-width:480px;">
@@ -456,19 +444,18 @@
     </div>
 </div>
 
-{{-- ── BENCANA AKTIF + MINI MAP ──────────────────────────── --}}
-<section class="py-5 section-light">
+{{-- ── BENCANA AKTIF MAP ────────────────────────────────── --}}
+<section class="pb-0 pt-5 section-light">
     <div class="container">
-        {{-- Header + Filter --}}
         <div class="reveal mb-4">
-            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                 <div>
                     <h2 class="fw-bold mb-1 d-flex align-items-center gap-2">
                         <span class="material-symbols-outlined msf text-danger ms-lg">warning</span>Bencana Aktif
                     </h2>
                     <p class="text-muted mb-0 small">
                         @if($bencanaAktif->isNotEmpty())
-                            {{ $bencanaAktif->count() }} kejadian perlu diwaspadai di Kota Bandung
+                            {{ $bencanaAktif->count() }} kejadian aktif di Kota Bandung &mdash; klik marker untuk detail
                         @else
                             Tidak ada kejadian bencana aktif saat ini
                         @endif
@@ -478,30 +465,11 @@
                     Lihat Semua <span class="material-symbols-outlined ms-sm">arrow_forward</span>
                 </a>
             </div>
-            @if($bencanaAktif->isNotEmpty())
-            <div class="status-filter" id="statusFilter">
-                <button class="sf-btn sf-all active" data-filter="all">Semua ({{ $bencanaAktif->count() }})</button>
-                @if($bencanaAktif->where('tingkat_status','Darurat')->count())
-                <button class="sf-btn sf-darurat" data-filter="darurat" style="color:#ef4444;border-color:#ef4444;">
-                    <span style="display:inline-block;width:7px;height:7px;background:#ef4444;border-radius:50%;margin-right:4px;animation:livePulse 1.4s ease-in-out infinite;"></span>
-                    Darurat ({{ $bencanaAktif->where('tingkat_status','Darurat')->count() }})
-                </button>
-                @endif
-                @if($bencanaAktif->where('tingkat_status','Siaga')->count())
-                <button class="sf-btn sf-siaga" data-filter="siaga" style="color:#3b82f6;border-color:#3b82f6;">
-                    Siaga ({{ $bencanaAktif->where('tingkat_status','Siaga')->count() }})
-                </button>
-                @endif
-                @if($bencanaAktif->where('tingkat_status','Waspada')->count())
-                <button class="sf-btn sf-waspada" data-filter="waspada" style="color:#f59e0b;border-color:#f59e0b;">
-                    Waspada ({{ $bencanaAktif->where('tingkat_status','Waspada')->count() }})
-                </button>
-                @endif
-            </div>
-            @endif
         </div>
+    </div>
 
-        @if($bencanaAktif->isEmpty())
+    @if($bencanaAktif->isEmpty())
+    <div class="container pb-5">
         <div class="card border-0 shadow-sm rounded-4 reveal">
             <div class="card-body py-5 text-center">
                 <div class="mb-3 d-inline-flex align-items-center justify-content-center rounded-circle"
@@ -512,71 +480,12 @@
                 <p class="text-muted mb-0">Tidak ada bencana aktif saat ini di Kota Bandung.</p>
             </div>
         </div>
-        @else
-        <div class="row g-4">
-            {{-- Cards --}}
-            <div class="col-lg-6">
-                <div class="row g-3" id="bencanaCards">
-                    @foreach($bencanaAktif->take(4) as $b)
-                    @php
-                        $statusKey = strtolower($b->tingkat_status);
-                        $iconMap   = ['darurat'=>'crisis_alert','siaga'=>'warning','waspada'=>'error_outline'];
-                        $rgbaMap   = ['darurat'=>'239,68,68','siaga'=>'59,130,246','waspada'=>'245,158,11'];
-                    @endphp
-                    <div class="col-md-6 reveal bencana-item" data-status="{{ $statusKey }}" style="transition-delay:{{ $loop->index * 0.07 }}s">
-                        <div class="card h-100 border-0 shadow-sm rounded-4 bencana-card bc-{{ $statusKey }}">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="status-icon" style="background:rgba({{ $rgbaMap[$statusKey] ?? '107,114,128' }},.12);">
-                                        <span class="material-symbols-outlined msf text-{{ $b->status_color }} ms-sm">
-                                            {{ $iconMap[$statusKey] ?? 'info' }}
-                                        </span>
-                                    </div>
-                                    <div style="min-width:0;flex:1;">
-                                        <div class="fw-bold text-truncate">{{ $b->jenis?->nama_bencana ?? 'Bencana' }}</div>
-                                        <div class="d-flex align-items-center gap-1 mt-1">
-                                            <span class="badge bg-{{ $b->status_color }} rounded-pill" style="font-size:10px;">{{ $b->tingkat_status }}</span>
-                                            @if($statusKey === 'darurat')
-                                            <span class="live-badge" style="font-size:9px;padding:2px 7px 2px 5px;"><span class="live-dot" style="width:5px;height:5px;"></span>LIVE</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-muted small d-flex align-items-start gap-1 mb-2">
-                                    <span class="material-symbols-outlined msf text-danger ms-sm flex-shrink-0" style="margin-top:1px;">location_on</span>
-                                    {{ Str::limit($b->lokasi, 52) }}
-                                </p>
-                                <p class="text-muted small mb-3">{{ Str::limit($b->deskripsi, 72) }}</p>
-                                <a href="{{ route('bencana.show', $b) }}"
-                                   class="btn btn-sm btn-outline-{{ $b->status_color }} w-100 d-flex align-items-center justify-content-center gap-1">
-                                    <span class="material-symbols-outlined ms-sm">arrow_forward_ios</span>Detail
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-
-            {{-- Mini Map --}}
-            <div class="col-lg-6 reveal" style="transition-delay:.1s">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                    <div class="card-header border-0 py-3 px-4 d-flex justify-content-between align-items-center">
-                        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined msf ms-sm text-primary">map</span>Peta Bencana Aktif
-                        </h6>
-                        <a href="{{ route('bencana.index') }}" class="text-muted small d-flex align-items-center gap-1" style="text-decoration:none;">
-                            Peta lengkap <span class="material-symbols-outlined ms-sm">open_in_new</span>
-                        </a>
-                    </div>
-                    <div class="card-body p-0">
-                        <div id="homeMap" style="height:480px;border-radius:0 0 1rem 1rem;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
     </div>
+    @else
+    <div class="reveal" style="transition-delay:.05s;">
+        <div id="homeMap" style="height:560px;width:100%;"></div>
+    </div>
+    @endif
 </section>
 
 {{-- ── BERITA TERKINI ────────────────────────────────────── --}}
@@ -788,29 +697,6 @@
 @push('scripts')
 <script>
 (function () {
-    /* ── Typewriter ─────────────────────────────────────── */
-    const phrases = ['Peringatan Dini Bencana', 'Pemantauan Real-time', 'Keselamatan Warga Kota'];
-    const el = document.getElementById('heroTypewriter');
-    const cursor = document.getElementById('twCursor');
-    if (el) {
-        let pi = 0, ci = 0, deleting = false;
-        function tick() {
-            const phrase = phrases[pi];
-            if (!deleting) {
-                ci++;
-                el.textContent = phrase.slice(0, ci);
-                if (ci === phrase.length) { deleting = true; setTimeout(tick, 2200); return; }
-                setTimeout(tick, 68);
-            } else {
-                ci--;
-                el.textContent = phrase.slice(0, ci);
-                if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 380); return; }
-                setTimeout(tick, 38);
-            }
-        }
-        tick();
-    }
-
     /* ── Mouse parallax on hero glows ──────────────────── */
     const hero = document.getElementById('heroSection');
     const g1 = document.getElementById('glow1');
@@ -852,22 +738,6 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    /* ── Bencana status filter ──────────────────────────── */
-    const filterBtns = document.querySelectorAll('#statusFilter .sf-btn');
-    const bencanaItems = document.querySelectorAll('.bencana-item');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const f = btn.dataset.filter;
-            bencanaItems.forEach(item => {
-                const match = f === 'all' || item.dataset.status === f;
-                item.style.display = match ? '' : 'none';
-                item.style.opacity = match ? '1' : '0';
-            });
-        });
-    });
 
     /* ── Berita sm image zoom ───────────────────────────── */
     document.querySelectorAll('.berita-sm').forEach(card => {
@@ -933,16 +803,17 @@
         });
 
         const marker = L.marker([b.latitude, b.longitude], { icon }).addTo(homeMap);
-        marker.bindPopup(`
-            <div style="font-family:'Inter',sans-serif;min-width:200px;line-height:1.4;padding:2px 0;">
-                <div style="font-weight:700;font-size:14px;margin-bottom:5px;">${jenis}</div>
-                <div style="font-size:12px;color:#64748b;margin-bottom:8px;">📍 ${b.lokasi}</div>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <span style="background:${color};color:${teksWarna};border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;">${b.tingkat_status}</span>
-                    <a href="/bencana/${b.id}" style="color:#3b82f6;font-size:12px;font-weight:700;text-decoration:none;">Detail &rsaquo;</a>
+        marker.bindTooltip(`
+            <div style="font-family:'Inter',sans-serif;line-height:1.5;padding:2px 0;">
+                <div style="font-weight:700;font-size:13px;">${jenis}</div>
+                <div style="font-size:11px;opacity:.7;margin-top:2px;">📍 ${b.lokasi}</div>
+                <div style="margin-top:5px;">
+                    <span style="background:${color};color:${teksWarna};border-radius:20px;padding:2px 9px;font-size:10px;font-weight:600;">${b.tingkat_status}</span>
                 </div>
+                <div style="font-size:10px;opacity:.5;margin-top:5px;font-style:italic;">Klik untuk detail →</div>
             </div>
-        `, { maxWidth:240 });
+        `, { sticky: true, opacity: 1 });
+        marker.on('click', () => { window.location.href = `/bencana/${b.id}`; });
         markerList.push(marker);
     });
 
