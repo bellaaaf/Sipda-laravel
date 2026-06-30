@@ -7,6 +7,7 @@ use App\Models\JenisBencana;
 use App\Models\LaporanMasyarakat;
 use App\Models\LogAktivitas;
 use App\Models\Notifikasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -67,6 +68,28 @@ class LaporanController extends Controller
             'deskripsi'  => "Laporan #{$laporan->id} dibuat: {$request->jenis_bencana} di {$request->lokasi_kejadian}",
             'ip_address' => $request->ip(),
         ]);
+
+        // Fan-out notifikasi ke semua admin dan petugas
+        $admins = User::where('role', 'admin')->where('is_active', true)->get();
+        foreach ($admins as $admin) {
+            Notifikasi::create([
+                'user_id' => $admin->id,
+                'judul'   => 'Laporan Bencana Baru',
+                'pesan'   => "{$request->jenis_bencana} di {$request->lokasi_kejadian} — dilaporkan oleh {$user->full_name} (#{$laporan->id})",
+                'tipe'    => 'laporan',
+                'url'     => route('admin.laporan.show', $laporan),
+            ]);
+        }
+        $petugasList = User::where('role', 'petugas')->where('is_active', true)->get();
+        foreach ($petugasList as $petugas) {
+            Notifikasi::create([
+                'user_id' => $petugas->id,
+                'judul'   => 'Laporan Bencana Baru',
+                'pesan'   => "{$request->jenis_bencana} di {$request->lokasi_kejadian} — dilaporkan oleh {$user->full_name} (#{$laporan->id})",
+                'tipe'    => 'laporan',
+                'url'     => route('petugas.laporan.show', $laporan),
+            ]);
+        }
 
         return redirect()->route('user.laporan.index')->with('success', 'Laporan berhasil dikirim! Petugas akan segera meninjau laporan Anda.');
     }

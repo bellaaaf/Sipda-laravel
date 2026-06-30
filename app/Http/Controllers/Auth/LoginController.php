@@ -75,7 +75,7 @@ class LoginController extends Controller
         return match(Auth::user()->role) {
             'admin'   => redirect()->route('admin.dashboard'),
             'petugas' => redirect()->route('petugas.dashboard'),
-            default   => redirect()->route('user.dashboard'),
+            default   => redirect()->route('home')->with('success', 'Selamat datang kembali, ' . Auth::user()->full_name . '!'),
         };
     }
 }

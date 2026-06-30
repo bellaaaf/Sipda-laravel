@@ -140,5 +140,8 @@
     })();
 </script>
 @stack('scripts')
+
+{{-- ── Notifikasi Toast ───────────────────────────────── --}}
+@include('partials.notifikasi-toast', ['unreadUrl' => route('notifikasi.unread'), 'bacaBase' => '/notifikasi'])
 </body>
 </html>

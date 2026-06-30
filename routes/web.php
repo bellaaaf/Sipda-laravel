@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Petugas;
 use App\Http\Controllers\PublicBencanaController;
 use App\Http\Controllers\PublicBeritaController;
@@ -36,6 +37,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 // Google OAuth
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
+
+// ═══════════════════════════════════════════════
+// NOTIFIKASI (admin + petugas)
+// ═══════════════════════════════════════════════
+Route::middleware(['auth', 'role:admin,petugas'])->prefix('notifikasi')->name('notifikasi.')->group(function () {
+    Route::get('/unread',             [NotifikasiController::class, 'unread'])->name('unread');
+    Route::post('/{notifikasi}/baca', [NotifikasiController::class, 'baca'])->name('baca');
+    Route::post('/baca-semua',        [NotifikasiController::class, 'bacaSemua'])->name('baca-semua');
+});
 
 // ═══════════════════════════════════════════════
 // USER (MASYARAKAT) ROUTES

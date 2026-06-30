@@ -102,6 +102,52 @@
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ══════════════════════════════════════════════════
+   GUEST TEASER CARDS (hero kanan, belum login)
+══════════════════════════════════════════════════ */
+.guest-card {
+    border-radius: 16px;
+    padding: 1rem 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+}
+.guest-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.15) !important;
+}
+
+/* Light mode: card putih/glass agar kontras dengan hero lavender */
+[data-bs-theme="light"] .guest-card {
+    background: rgba(255,255,255,0.82) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.07);
+}
+[data-bs-theme="light"] .guest-card .gc-title { color: #0d1f3c !important; }
+[data-bs-theme="light"] .guest-card .gc-desc  { color: rgba(13,31,60,.55) !important; }
+
+/* Dark mode: dark glass berwarna */
+[data-bs-theme="dark"] .guest-card {
+    background: rgba(255,255,255,.06) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+}
+[data-bs-theme="dark"] .guest-card .gc-title { color: #fff !important; }
+[data-bs-theme="dark"] .guest-card .gc-desc  { color: rgba(255,255,255,.55) !important; }
+
+/* Icon badge */
+.guest-card .gc-icon {
+    width: 44px; height: 44px; border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+[data-bs-theme="light"] .guest-card .gc-icon { opacity: .9; }
+
+/* ══════════════════════════════════════════════════
    STATUS FILTER TABS
 ══════════════════════════════════════════════════ */
 .status-filter { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -387,8 +433,9 @@
                 </div>
             </div>
 
-            {{-- Right: Stat boxes --}}
+            {{-- Right: Stat boxes (auth) / Feature teaser (guest) --}}
             <div class="col-lg-6">
+                @auth
                 <div class="row g-3">
                     <div class="col-6">
                         <div class="hero-stat-box darurat-box" style="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);">
@@ -439,6 +486,48 @@
                         </div>
                     </div>
                 </div>
+                @else
+                {{-- Guest: fitur teaser --}}
+                <div class="d-flex flex-column gap-3">
+                    <div class="guest-card" style="border-left-color:#6366f1;">
+                        <div class="gc-icon" style="background:#6366f1;">
+                            <span class="material-symbols-outlined msf text-white ms-sm">sensors</span>
+                        </div>
+                        <div>
+                            <div class="fw-bold gc-title">Pemantauan Real-time</div>
+                            <div class="small gc-desc">Status bencana aktif diperbarui langsung</div>
+                        </div>
+                    </div>
+                    <div class="guest-card" style="border-left-color:#0ea5e9;">
+                        <div class="gc-icon" style="background:#0ea5e9;">
+                            <span class="material-symbols-outlined msf text-white ms-sm">map</span>
+                        </div>
+                        <div>
+                            <div class="fw-bold gc-title">Peta Interaktif</div>
+                            <div class="small gc-desc">Visualisasi sebaran titik rawan & bencana aktif</div>
+                        </div>
+                    </div>
+                    <div class="guest-card" style="border-left-color:#10b981;">
+                        <div class="gc-icon" style="background:#10b981;">
+                            <span class="material-symbols-outlined msf text-white ms-sm">campaign</span>
+                        </div>
+                        <div>
+                            <div class="fw-bold gc-title">Laporan Masyarakat</div>
+                            <div class="small gc-desc">Login untuk kirim laporan & lihat data lengkap</div>
+                        </div>
+                    </div>
+                    <a href="{{ route('login') }}" class="guest-card" style="border-left-color:#f59e0b;">
+                        <div class="gc-icon" style="background:#f59e0b;">
+                            <span class="material-symbols-outlined msf text-white ms-sm">lock_open</span>
+                        </div>
+                        <div style="flex:1;min-width:0;">
+                            <div class="fw-bold gc-title">Login untuk data lengkap</div>
+                            <div class="small gc-desc">Statistik, laporan, & detail bencana aktif</div>
+                        </div>
+                        <span class="material-symbols-outlined ms-sm" style="color:#f59e0b;flex-shrink:0;">arrow_forward</span>
+                    </a>
+                </div>
+                @endauth
             </div>
         </div>
     </div>
@@ -747,22 +836,23 @@
         card.addEventListener('mouseleave', () => img.style.transform = '');
     });
 
-    /* ── Mini map ───────────────────────────────────────── */
+    /* ── Peta bencana ───────────────────────────────────── */
     const mapEl = document.getElementById('homeMap');
     if (!mapEl) return;
 
     const STATUS_COLORS = { Darurat:'#ef4444', Siaga:'#3b82f6', Waspada:'#f59e0b', Aman:'#10b981' };
 
+    /* Tile Voyager (berwarna, tidak flat) untuk light; dark_matter untuk dark */
     const lightTiles = L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-        { attribution:'&copy; OSM &copy; CARTO', maxZoom:19 }
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        { attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>', maxZoom:19 }
     );
     const darkTiles = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-        { attribution:'&copy; OSM &copy; CARTO', maxZoom:19 }
+        { attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>', maxZoom:19 }
     );
 
-    const homeMap = L.map('homeMap', { zoomControl:false, scrollWheelZoom:false })
+    const homeMap = L.map('homeMap', { zoomControl: true, scrollWheelZoom: false })
                      .setView([-6.9175, 107.6191], 12);
 
     let activeTiles = document.documentElement.getAttribute('data-bs-theme') === 'dark'
@@ -778,60 +868,99 @@
         }, 50);
     });
 
+    const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
     const bencanaData = @json($bencanaAktif);
     const markerList  = [];
 
     bencanaData.forEach(b => {
         if (!b.latitude || !b.longitude) return;
-        const color     = STATUS_COLORS[b.tingkat_status] || '#6b7280';
-        const jenis     = b.jenis?.nama_bencana ?? 'Bencana';
-        const teksWarna = b.tingkat_status === 'Waspada' ? '#1a1a1a' : '#fff';
-        const isDarurat = b.tingkat_status === 'Darurat';
 
-        const icon = L.divIcon({
-            className: '',
-            html: isDarurat
-                ? `<div class="map-pin-darurat"></div>`
-                : `<div style="width:30px;height:30px;border-radius:50%;
-                       background:${color};border:3px solid rgba(255,255,255,.9);
-                       box-shadow:0 2px 16px ${color}66;
-                       display:flex;align-items:center;justify-content:center;
-                       font-size:13px;color:#fff;font-weight:700;">⚠</div>`,
-            iconSize: isDarurat ? [36,36] : [30,30],
-            iconAnchor: isDarurat ? [18,18] : [15,15],
-            popupAnchor: [0,-20]
-        });
+        let marker;
 
-        const marker = L.marker([b.latitude, b.longitude], { icon }).addTo(homeMap);
-        marker.bindTooltip(`
-            <div style="font-family:'Inter',sans-serif;line-height:1.5;padding:2px 0;">
-                <div style="font-weight:700;font-size:13px;">${jenis}</div>
-                <div style="font-size:11px;opacity:.7;margin-top:2px;">📍 ${b.lokasi}</div>
-                <div style="margin-top:5px;">
-                    <span style="background:${color};color:${teksWarna};border-radius:20px;padding:2px 9px;font-size:10px;font-weight:600;">${b.tingkat_status}</span>
+        if (!isLoggedIn) {
+            /* ── TAMU: titik rawan abu-abu sederhana ── */
+            const icon = L.divIcon({
+                className: '',
+                html: `<div style="width:14px;height:14px;border-radius:50%;
+                           background:#94a3b8;border:2px solid rgba(255,255,255,.7);
+                           box-shadow:0 1px 6px rgba(0,0,0,.25);"></div>`,
+                iconSize: [14,14], iconAnchor: [7,7]
+            });
+            marker = L.marker([b.latitude, b.longitude], { icon }).addTo(homeMap);
+            marker.bindTooltip(
+                `<div style="font-family:'Inter',sans-serif;font-size:12px;padding:2px 0;">
+                    <span style="display:inline-block;width:8px;height:8px;background:#94a3b8;border-radius:50%;margin-right:5px;"></span>
+                    Titik Rawan &mdash; <a href="{{ route('login') }}" style="color:#3b82f6;font-weight:600;">Login</a> untuk detail
+                 </div>`,
+                { sticky: true, opacity: 1 }
+            );
+        } else {
+            /* ── USER LOGIN: marker berwarna lengkap ── */
+            const color     = STATUS_COLORS[b.tingkat_status] || '#6b7280';
+            const jenis     = b.jenis?.nama_bencana ?? 'Bencana';
+            const teksWarna = b.tingkat_status === 'Waspada' ? '#1a1a1a' : '#fff';
+            const isDarurat = b.tingkat_status === 'Darurat';
+
+            const icon = L.divIcon({
+                className: '',
+                html: isDarurat
+                    ? `<div class="map-pin-darurat"></div>`
+                    : `<div style="width:30px;height:30px;border-radius:50%;
+                           background:${color};border:3px solid rgba(255,255,255,.9);
+                           box-shadow:0 2px 16px ${color}66;
+                           display:flex;align-items:center;justify-content:center;
+                           font-size:13px;color:#fff;font-weight:700;">⚠</div>`,
+                iconSize: isDarurat ? [36,36] : [30,30],
+                iconAnchor: isDarurat ? [18,18] : [15,15]
+            });
+            marker = L.marker([b.latitude, b.longitude], { icon }).addTo(homeMap);
+            marker.bindTooltip(`
+                <div style="font-family:'Inter',sans-serif;line-height:1.5;padding:2px 0;">
+                    <div style="font-weight:700;font-size:13px;">${jenis}</div>
+                    <div style="font-size:11px;opacity:.7;margin-top:2px;">📍 ${b.lokasi}</div>
+                    <div style="margin-top:5px;">
+                        <span style="background:${color};color:${teksWarna};border-radius:20px;padding:2px 9px;font-size:10px;font-weight:600;">${b.tingkat_status}</span>
+                    </div>
+                    <div style="font-size:10px;opacity:.5;margin-top:5px;font-style:italic;">Klik untuk detail →</div>
                 </div>
-                <div style="font-size:10px;opacity:.5;margin-top:5px;font-style:italic;">Klik untuk detail →</div>
-            </div>
-        `, { sticky: true, opacity: 1 });
-        marker.on('click', () => { window.location.href = `/bencana/${b.id}`; });
+            `, { sticky: true, opacity: 1 });
+            marker.on('click', () => { window.location.href = `/bencana/${b.id}`; });
+        }
+
         markerList.push(marker);
     });
 
     if (markerList.length > 0) {
-        homeMap.fitBounds(L.featureGroup(markerList).getBounds().pad(0.25));
+        homeMap.fitBounds(L.featureGroup(markerList).getBounds().pad(0.3));
     }
 
-    /* Map legend */
-    const legend = L.control({ position: 'bottomright' });
-    legend.onAdd = () => {
-        const div = L.DomUtil.create('div', 'home-map-legend');
-        div.innerHTML = Object.entries(STATUS_COLORS).map(([s, c]) => `
-            <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;font-weight:500;">
-                <span class="home-map-legend-dot" style="background:${c}"></span>${s}
-            </div>`).join('');
-        return div;
-    };
-    legend.addTo(homeMap);
+    /* Legenda (hanya untuk user login) */
+    if (isLoggedIn) {
+        const legend = L.control({ position: 'bottomright' });
+        legend.onAdd = () => {
+            const div = L.DomUtil.create('div', 'home-map-legend');
+            div.innerHTML = Object.entries(STATUS_COLORS).map(([s, c]) => `
+                <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;font-weight:500;">
+                    <span class="home-map-legend-dot" style="background:${c}"></span>${s}
+                </div>`).join('');
+            return div;
+        };
+        legend.addTo(homeMap);
+    } else {
+        const legend = L.control({ position: 'bottomright' });
+        legend.onAdd = () => {
+            const div = L.DomUtil.create('div', 'home-map-legend');
+            div.innerHTML = `
+                <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;font-weight:500;">
+                    <span class="home-map-legend-dot" style="background:#94a3b8"></span>Titik Rawan
+                </div>
+                <div style="font-size:10px;opacity:.6;margin-top:4px;">
+                    <a href="{{ route('login') }}" style="color:#3b82f6;">Login</a> untuk detail status
+                </div>`;
+            return div;
+        };
+        legend.addTo(homeMap);
+    }
 
 })();
 </script>

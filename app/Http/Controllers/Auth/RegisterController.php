@@ -46,6 +46,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.dashboard')->with('success', 'Pendaftaran berhasil! Selamat datang di SIPDA Bandung.');
+        return redirect()->route('home')->with('success', 'Pendaftaran berhasil! Selamat datang di SIPDA Bandung, ' . $user->full_name . '!');
     }
 }
