@@ -41,7 +41,7 @@
 }
 
 /* DARK MODE - Hitam pekat (bukan biru tua) */
-[data-theme="dark"] {
+[data-bs-theme="dark"] {
     --c-bg:        #0D0E12;
     --c-bg2:       #14161C;
     --c-surface:   #1A1D26;
@@ -118,7 +118,7 @@ body {
 .tawk-header { background: linear-gradient(135deg, #DC2626, #B91C1C) !important; }
 .tawk-send-button { background: #3B82F6 !important; }
 .tawk-send-button:hover { background: #2563EB !important; }
-[data-theme="dark"] .tawk-button-circle {
+[data-bs-theme="dark"] .tawk-button-circle {
     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.6) !important;
 }
 
@@ -202,7 +202,7 @@ body {
     pointer-events: none;
     transition: opacity .3s ease;
 }
-[data-theme="dark"] .hero-grid-bg { opacity: .12; }
+[data-bs-theme="dark"] .hero-grid-bg { opacity: .12; }
 .hero-grid-bg::after {
     content: '';
     position: absolute;
@@ -456,13 +456,13 @@ body {
     justify-content: center;
     margin-bottom: 16px;
 }
-[data-theme="dark"] .guest-hero-card .ghc-icon {
+[data-bs-theme="dark"] .guest-hero-card .ghc-icon {
     background: rgba(220,38,38,.2);
 }
 .guest-hero-card .ghc-icon .material-symbols-outlined {
     color: #DC2626;
 }
-[data-theme="dark"] .guest-hero-card .ghc-icon .material-symbols-outlined {
+[data-bs-theme="dark"] .guest-hero-card .ghc-icon .material-symbols-outlined {
     color: #F87171;
 }
 .guest-hero-card .ghc-title {
@@ -515,10 +515,10 @@ body {
 .emergency-contact-item .ec-icon.ec-blue { background: #DBEAFE; color: #3B82F6; }
 .emergency-contact-item .ec-icon.ec-green { background: #D1FAE5; color: #10B981; }
 .emergency-contact-item .ec-icon.ec-yellow { background: #FEF3C7; color: #F59E0B; }
-[data-theme="dark"] .emergency-contact-item .ec-icon.ec-red { background: rgba(220,38,38,.2); color: #F87171; }
-[data-theme="dark"] .emergency-contact-item .ec-icon.ec-blue { background: rgba(59,130,246,.2); color: #60A5FA; }
-[data-theme="dark"] .emergency-contact-item .ec-icon.ec-green { background: rgba(16,185,129,.2); color: #34D399; }
-[data-theme="dark"] .emergency-contact-item .ec-icon.ec-yellow { background: rgba(245,158,11,.2); color: #FBBF24; }
+[data-bs-theme="dark"] .emergency-contact-item .ec-icon.ec-red { background: rgba(220,38,38,.2); color: #F87171; }
+[data-bs-theme="dark"] .emergency-contact-item .ec-icon.ec-blue { background: rgba(59,130,246,.2); color: #60A5FA; }
+[data-bs-theme="dark"] .emergency-contact-item .ec-icon.ec-green { background: rgba(16,185,129,.2); color: #34D399; }
+[data-bs-theme="dark"] .emergency-contact-item .ec-icon.ec-yellow { background: rgba(245,158,11,.2); color: #FBBF24; }
 .emergency-contact-item .ec-info {
     flex: 1;
     min-width: 0;
@@ -719,12 +719,12 @@ body {
 .wcard.wt-storm  .wcard-icon-wrap { background: rgba(139,92,246,.12); }
 .wcard.wt-fog    .wcard-icon-wrap { background: rgba(148,163,184,.08); }
 .wcard.wt-night  .wcard-icon-wrap { background: rgba(99,102,241,.1); }
-[data-theme="dark"] .wcard.wt-sunny  .wcard-icon-wrap { background: rgba(251,191,36,.2); }
-[data-theme="dark"] .wcard.wt-cloudy .wcard-icon-wrap { background: rgba(148,163,184,.2); }
-[data-theme="dark"] .wcard.wt-rain   .wcard-icon-wrap { background: rgba(59,130,246,.2); }
-[data-theme="dark"] .wcard.wt-storm  .wcard-icon-wrap { background: rgba(139,92,246,.2); }
-[data-theme="dark"] .wcard.wt-fog    .wcard-icon-wrap { background: rgba(148,163,184,.2); }
-[data-theme="dark"] .wcard.wt-night  .wcard-icon-wrap { background: rgba(99,102,241,.2); }
+[data-bs-theme="dark"] .wcard.wt-sunny  .wcard-icon-wrap { background: rgba(251,191,36,.2); }
+[data-bs-theme="dark"] .wcard.wt-cloudy .wcard-icon-wrap { background: rgba(148,163,184,.2); }
+[data-bs-theme="dark"] .wcard.wt-rain   .wcard-icon-wrap { background: rgba(59,130,246,.2); }
+[data-bs-theme="dark"] .wcard.wt-storm  .wcard-icon-wrap { background: rgba(139,92,246,.2); }
+[data-bs-theme="dark"] .wcard.wt-fog    .wcard-icon-wrap { background: rgba(148,163,184,.2); }
+[data-bs-theme="dark"] .wcard.wt-night  .wcard-icon-wrap { background: rgba(99,102,241,.2); }
 .wcard-icon-symbol { font-size: 22px; font-variation-settings: 'FILL' 1; }
 .wcard.wt-sunny  .wcard-icon-symbol { color: #FBBF24; }
 .wcard.wt-cloudy .wcard-icon-symbol { color: #94A3B8; }
@@ -792,7 +792,7 @@ body {
     justify-content: center;
     flex-shrink: 0;
 }
-[data-theme="dark"] .weather-noapi-icon {
+[data-bs-theme="dark"] .weather-noapi-icon {
     background: rgba(59,130,246,.15);
     border-color: rgba(59,130,246,.3);
 }
@@ -977,9 +977,9 @@ body {
 .bcard-badge.bd { background: #FEE2E2; color: #b91c1c; border: 1px solid #FCA5A5; }
 .bcard-badge.bs { background: #DBEAFE; color: #1d4ed8; border: 1px solid #BFDBFE; }
 .bcard-badge.bw { background: #FEF3C7; color: #92400e; border: 1px solid #FDE68A; }
-[data-theme="dark"] .bcard-badge.bd { background: rgba(220,38,38,.2); color: #F87171; border-color: rgba(220,38,38,.3); }
-[data-theme="dark"] .bcard-badge.bs { background: rgba(59,130,246,.2); color: #60A5FA; border-color: rgba(59,130,246,.3); }
-[data-theme="dark"] .bcard-badge.bw { background: rgba(245,158,11,.2); color: #FBBF24; border-color: rgba(245,158,11,.3); }
+[data-bs-theme="dark"] .bcard-badge.bd { background: rgba(220,38,38,.2); color: #F87171; border-color: rgba(220,38,38,.3); }
+[data-bs-theme="dark"] .bcard-badge.bs { background: rgba(59,130,246,.2); color: #60A5FA; border-color: rgba(59,130,246,.3); }
+[data-bs-theme="dark"] .bcard-badge.bw { background: rgba(245,158,11,.2); color: #FBBF24; border-color: rgba(245,158,11,.3); }
 .bcard-loc { font-size: 12px; color: var(--c-muted); display: flex; align-items: flex-start; gap: 4px; margin: 9px 0 5px; }
 .bcard-desc { font-size: 12px; color: var(--c-muted); line-height: 1.55; }
 .bcard-link {
@@ -991,9 +991,9 @@ body {
 .bcard-link.bd { color: var(--c-darurat); background: #FEE2E2; }
 .bcard-link.bs { color: #1d4ed8;          background: #DBEAFE; }
 .bcard-link.bw { color: #92400e;          background: #FEF3C7; }
-[data-theme="dark"] .bcard-link.bd { background: rgba(220,38,38,.15); }
-[data-theme="dark"] .bcard-link.bs { background: rgba(59,130,246,.15); }
-[data-theme="dark"] .bcard-link.bw { background: rgba(245,158,11,.15); }
+[data-bs-theme="dark"] .bcard-link.bd { background: rgba(220,38,38,.15); }
+[data-bs-theme="dark"] .bcard-link.bs { background: rgba(59,130,246,.15); }
+[data-bs-theme="dark"] .bcard-link.bw { background: rgba(245,158,11,.15); }
 .bcard-link:hover { filter: brightness(1.1); }
 .bcard-expand-btn {
     font-size: 11px; font-weight: 600;
@@ -1028,7 +1028,7 @@ body {
     justify-content: center;
     margin-bottom: 16px;
 }
-[data-theme="dark"] .empty-icon {
+[data-bs-theme="dark"] .empty-icon {
     background: rgba(16,185,129,.15);
     border-color: rgba(16,185,129,.3);
 }
@@ -1071,7 +1071,7 @@ body {
     font-size: 11px; font-weight: 700; letter-spacing: .5px;
     font-family: var(--font-display);
 }
-[data-theme="dark"] .berita-tag {
+[data-bs-theme="dark"] .berita-tag {
     background: rgba(59,130,246,.2);
     color: #60A5FA;
     border-color: rgba(59,130,246,.3);
@@ -1110,7 +1110,7 @@ body {
     cursor: pointer;
 }
 .berita-more-tile:hover { border-color: #BFDBFE; background: #EFF6FF; }
-[data-theme="dark"] .berita-more-tile:hover { border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.08); }
+[data-bs-theme="dark"] .berita-more-tile:hover { border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.08); }
 
 /* ═══════════════════════════════════════════════
    FEATURES
@@ -1145,11 +1145,11 @@ body {
 .fi-1 { background: #F5F3FF; }
 .fi-2 { background: #EFF6FF; }
 .fi-3 { background: #ECFDF5; }
-[data-theme="dark"] .fi-1 { background: rgba(139,92,246,.15); }
-[data-theme="dark"] .fi-2 { background: rgba(59,130,246,.15); }
-[data-theme="dark"] .fi-3 { background: rgba(16,185,129,.15); }
+[data-bs-theme="dark"] .fi-1 { background: rgba(139,92,246,.15); }
+[data-bs-theme="dark"] .fi-2 { background: rgba(59,130,246,.15); }
+[data-bs-theme="dark"] .fi-3 { background: rgba(16,185,129,.15); }
 .feature-number { position: absolute; top: 18px; right: 20px; font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: rgba(0,0,0,.04); line-height: 1; user-select: none; }
-[data-theme="dark"] .feature-number { color: rgba(255,255,255,.04); }
+[data-bs-theme="dark"] .feature-number { color: rgba(255,255,255,.04); }
 .feature-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--c-text); margin-bottom: 9px; }
 .feature-desc  { font-size: 13.5px; color: var(--c-muted); line-height: 1.65; }
 
@@ -1197,7 +1197,7 @@ body {
     justify-content: center;
     margin-bottom: 12px;
 }
-[data-theme="dark"] .guest-bencana-placeholder .gbp-icon {
+[data-bs-theme="dark"] .guest-bencana-placeholder .gbp-icon {
     background: rgba(59,130,246,.15);
     border-color: rgba(59,130,246,.3);
 }
@@ -1246,67 +1246,418 @@ body {
 </style>
 @endpush
 
-{{-- ══════════════════════════════════════════
-     CONTENT — SAMA SEPERTI SEBELUMNYA
-     (ticker, hero, weather, map, berita, fitur, cta)
-══════════════════════════════════════════ --}}
-{{-- ... (sama seperti sebelumnya, tidak diubah) --}}
+@section('content')
 
-{{-- DARK MODE TOGGLE --}}
-<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
-</button>
+{{-- ── Emergency Alert Ticker (Darurat only) ────────────── --}}
+@php $darurat = $bencanaAktif->where('tingkat_status', 'Darurat'); @endphp
+@if($darurat->isNotEmpty())
+<div style="background: linear-gradient(90deg,#9f1239,#dc2626); overflow:hidden; position:relative; z-index:10;">
+    <div class="container-fluid py-2">
+        <div class="d-flex align-items-center gap-3">
+            <span class="badge bg-white text-danger fw-black px-2 py-1 flex-shrink-0 d-flex align-items-center gap-1" style="font-size:10px;letter-spacing:.3px;">
+                <span class="material-symbols-outlined msf" style="font-size:11px;">warning</span>DARURAT
+            </span>
+            <div class="ticker-track">
+                <div class="ticker-inner text-white" style="font-size:0.82rem;font-weight:500;">
+                    @foreach($darurat as $d)
+                    <span class="d-inline-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined msf" style="font-size:13px;">location_on</span>
+                        {{ $d->jenis?->nama_bencana ?? 'Bencana' }} — {{ $d->lokasi }}
+                    </span>
+                    @endforeach
+                    {{-- duplicate for seamless loop --}}
+                    @foreach($darurat as $d)
+                    <span class="d-inline-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined msf" style="font-size:13px;">location_on</span>
+                        {{ $d->jenis?->nama_bencana ?? 'Bencana' }} — {{ $d->lokasi }}
+                    </span>
+                    @endforeach
+                </div>
+            </div>
+            <a href="{{ route('bencana.index') }}" class="btn btn-sm btn-outline-light flex-shrink-0 d-flex align-items-center gap-1" style="font-size:11px;">
+                Lihat <span class="material-symbols-outlined ms-sm">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</div>
+@endif
+
+{{-- ── HERO ──────────────────────────────────────────────── --}}
+<div class="hero-section position-relative overflow-hidden" style="min-height:540px;">
+    <div class="hero-glow" style="width:560px;height:560px;background:rgba(99,102,241,0.22);top:-140px;right:-80px;"></div>
+    <div class="hero-glow" style="width:320px;height:320px;background:rgba(245,158,11,0.12);bottom:-40px;left:8%;animation-delay:-5s;"></div>
+    <div class="hero-glow" style="width:200px;height:200px;background:rgba(239,68,68,0.1);top:30%;left:40%;animation-delay:-2s;"></div>
+
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            {{-- Left: Text --}}
+            <div class="col-lg-6">
+                <div class="d-inline-flex align-items-center gap-2 badge bg-warning text-dark px-3 py-2 rounded-pill mb-4" style="font-size:0.78rem;">
+                    <span class="material-symbols-outlined msf text-danger" style="font-size:11px;animation:glowDrift 1.5s ease-in-out infinite alternate;">radio_button_checked</span>
+                    Sistem Aktif 24/7
+                </div>
+                <h1 class="display-4 fw-black mb-3 lh-sm">
+                    Sistem Informasi<br>
+                    <span style="background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        Peringatan Dini<br>Bencana
+                    </span>
+                </h1>
+                <p class="fs-5 text-white-50 mb-4 lh-base" style="max-width:480px;">
+                    Pantau, laporkan, dan dapatkan informasi bencana alam Kota Bandung secara real-time. Bersama kita jaga keselamatan warga.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mb-5">
+                    <a href="{{ route('bencana.index') }}" class="btn btn-warning btn-lg fw-bold px-4 d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined msf">crisis_alert</span>Pantau Bencana
+                    </a>
+                    @guest
+                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg px-4 d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined">person_add</span>Daftar &amp; Lapor
+                    </a>
+                    @else
+                        @if(auth()->user()->isMasyarakat())
+                        <a href="{{ route('user.laporan.create') }}" class="btn btn-outline-light btn-lg px-4 d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined">campaign</span>Buat Laporan
+                        </a>
+                        @endif
+                    @endguest
+                </div>
+                <div class="scroll-indicator d-none d-lg-flex">
+                    <small class="text-white-50" style="letter-spacing:1.5px;text-transform:uppercase;font-size:10px;">Scroll</small>
+                    <span class="material-symbols-outlined text-white-50 ms-sm">keyboard_arrow_down</span>
+                </div>
+            </div>
+
+            {{-- Right: Stat boxes with animated counters --}}
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="hero-stat-box" style="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="status-icon" style="background:rgba(239,68,68,.2);">
+                                    <span class="material-symbols-outlined msf text-danger ms-sm">crisis_alert</span>
+                                </div>
+                                <small class="text-white-50">Darurat</small>
+                            </div>
+                            <div class="display-5 fw-black text-danger stat-counter" data-target="{{ $statistik['bencana_darurat'] }}">0</div>
+                            <div class="text-white-50" style="font-size:11px;margin-top:2px;">Bencana Darurat</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="hero-stat-box" style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="status-icon" style="background:rgba(59,130,246,.2);">
+                                    <span class="material-symbols-outlined msf text-primary ms-sm">database</span>
+                                </div>
+                                <small class="text-white-50">Total</small>
+                            </div>
+                            <div class="display-5 fw-black text-primary stat-counter" data-target="{{ $statistik['total_bencana'] }}">0</div>
+                            <div class="text-white-50" style="font-size:11px;margin-top:2px;">Total Bencana</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="hero-stat-box" style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="status-icon" style="background:rgba(16,185,129,.2);">
+                                    <span class="material-symbols-outlined msf text-success ms-sm">campaign</span>
+                                </div>
+                                <small class="text-white-50">Laporan</small>
+                            </div>
+                            <div class="display-5 fw-black text-success stat-counter" data-target="{{ $statistik['total_laporan'] }}">0</div>
+                            <div class="text-white-50" style="font-size:11px;margin-top:2px;">Total Laporan</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="hero-stat-box" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="status-icon" style="background:rgba(245,158,11,.2);">
+                                    <span class="material-symbols-outlined msf text-warning ms-sm">pending_actions</span>
+                                </div>
+                                <small class="text-white-50">Pending</small>
+                            </div>
+                            <div class="display-5 fw-black text-warning stat-counter" data-target="{{ $statistik['laporan_pending'] }}">0</div>
+                            <div class="text-white-50" style="font-size:11px;margin-top:2px;">Laporan Pending</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ── BENCANA AKTIF + MINI MAP ──────────────────────────── --}}
+<section class="py-5 section-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 reveal">
+            <div>
+                <h2 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined msf text-danger ms-lg">warning</span>Bencana Aktif
+                </h2>
+                <p class="text-muted mb-0 small">
+                    @if($bencanaAktif->isNotEmpty())
+                        {{ $bencanaAktif->count() }} kejadian perlu diwaspadai di Kota Bandung
+                    @else
+                        Tidak ada kejadian bencana aktif saat ini
+                    @endif
+                </p>
+            </div>
+            <a href="{{ route('bencana.index') }}" class="btn btn-outline-primary d-flex align-items-center gap-1">
+                Lihat Semua <span class="material-symbols-outlined ms-sm">arrow_forward</span>
+            </a>
+        </div>
+
+        @if($bencanaAktif->isEmpty())
+        <div class="card border-0 shadow-sm rounded-4 reveal">
+            <div class="card-body py-5 text-center">
+                <div class="mb-3 d-inline-flex align-items-center justify-content-center rounded-circle"
+                     style="width:80px;height:80px;background:rgba(16,185,129,0.1);">
+                    <span class="material-symbols-outlined msf text-success ms-xxl">verified_user</span>
+                </div>
+                <h5 class="fw-bold mb-1">Kondisi Aman</h5>
+                <p class="text-muted mb-0">Tidak ada bencana aktif saat ini di Kota Bandung.</p>
+            </div>
+        </div>
+        @else
+        <div class="row g-4">
+            {{-- Cards --}}
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    @foreach($bencanaAktif->take(4) as $b)
+                    @php
+                        $statusKey = strtolower($b->tingkat_status);
+                        $iconMap   = ['darurat'=>'crisis_alert','siaga'=>'warning','waspada'=>'error_outline'];
+                        $rgbaMap   = ['darurat'=>'239,68,68','siaga'=>'59,130,246','waspada'=>'245,158,11'];
+                    @endphp
+                    <div class="col-md-6 reveal" style="transition-delay:{{ $loop->index * 0.07 }}s">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 bencana-card bc-{{ $statusKey }}">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3 mb-3">
+                                    <div class="status-icon" style="background:rgba({{ $rgbaMap[$statusKey] ?? '107,114,128' }},.12);">
+                                        <span class="material-symbols-outlined msf text-{{ $b->status_color }} ms-sm">
+                                            {{ $iconMap[$statusKey] ?? 'info' }}
+                                        </span>
+                                    </div>
+                                    <div style="min-width:0;">
+                                        <div class="fw-bold text-truncate">{{ $b->jenis?->nama_bencana ?? 'Bencana' }}</div>
+                                        <span class="badge bg-{{ $b->status_color }} rounded-pill" style="font-size:10px;">{{ $b->tingkat_status }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-muted small d-flex align-items-start gap-1 mb-2">
+                                    <span class="material-symbols-outlined msf text-danger ms-sm flex-shrink-0" style="margin-top:1px;">location_on</span>
+                                    {{ Str::limit($b->lokasi, 52) }}
+                                </p>
+                                <p class="text-muted small mb-3">{{ Str::limit($b->deskripsi, 72) }}</p>
+                                <a href="{{ route('bencana.show', $b) }}"
+                                   class="btn btn-sm btn-outline-{{ $b->status_color }} w-100 d-flex align-items-center justify-content-center gap-1">
+                                    <span class="material-symbols-outlined ms-sm">arrow_forward_ios</span>Detail
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- Mini Map --}}
+            <div class="col-lg-5 reveal" style="transition-delay:0.1s">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-header border-0 py-3 px-4 d-flex justify-content-between align-items-center">
+                        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined msf ms-sm text-primary">map</span>Peta Bencana Aktif
+                        </h6>
+                        <a href="{{ route('bencana.index') }}" class="text-muted small d-flex align-items-center gap-1" style="text-decoration:none;">
+                            Peta lengkap <span class="material-symbols-outlined ms-sm">open_in_new</span>
+                        </a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="homeMap" style="height:340px;border-radius:0 0 1rem 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
+</section>
+
+{{-- ── BERITA TERKINI ────────────────────────────────────── --}}
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 reveal">
+            <div>
+                <h2 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined msf text-primary ms-lg">newspaper</span>Berita Terkini
+                </h2>
+                <p class="text-muted mb-0 small">Informasi resmi dari BPBD Kota Bandung</p>
+            </div>
+            <a href="{{ route('berita.index') }}" class="btn btn-outline-primary d-flex align-items-center gap-1">
+                Lihat Semua <span class="material-symbols-outlined ms-sm">arrow_forward</span>
+            </a>
+        </div>
+
+        @if($beritaTerbaru->isEmpty())
+        <div class="text-center py-5 text-muted reveal">
+            <span class="material-symbols-outlined ms-xxl d-block mb-3 opacity-30">inbox</span>
+            Belum ada berita tersedia.
+        </div>
+        @else
+        @php $featured = $beritaTerbaru->first(); $others = $beritaTerbaru->skip(1)->take(2); @endphp
+        <div class="row g-4">
+            {{-- Featured article --}}
+            <div class="col-lg-7 reveal">
+                <div class="card h-100 border-0 shadow-sm rounded-4 berita-featured">
+                    @if($featured->foto)
+                        <img src="{{ Storage::url($featured->foto) }}" class="card-img-top rounded-top-4"
+                             style="height:260px;object-fit:cover;" alt="{{ $featured->judul }}">
+                    @else
+                        <div class="rounded-top-4 d-flex align-items-center justify-content-center berita-placeholder"
+                             style="height:260px;background:linear-gradient(135deg,#4338ca,#7c3aed);">
+                            <span class="material-symbols-outlined text-white opacity-30" style="font-size:72px;">newspaper</span>
+                        </div>
+                    @endif
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="badge bg-primary rounded-pill px-2">Terbaru</span>
+                            <small class="text-muted d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined ms-sm">schedule</span>{{ $featured->created_at->diffForHumans() }}
+                            </small>
+                        </div>
+                        <h4 class="fw-bold mb-2 lh-sm">{{ Str::limit($featured->judul, 80) }}</h4>
+                        <p class="text-muted mb-4">{{ Str::limit(strip_tags($featured->isi), 135) }}</p>
+                        <a href="{{ route('berita.show', $featured) }}" class="btn btn-primary d-inline-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined msf ms-sm">article</span>Baca Selengkapnya
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Smaller articles --}}
+            <div class="col-lg-5 d-flex flex-column gap-4">
+                @foreach($others as $berita)
+                <div class="reveal" style="transition-delay:{{ $loop->index * 0.1 + 0.12 }}s">
+                    <div class="card border-0 shadow-sm rounded-4 berita-sm">
+                        <div class="row g-0">
+                            <div class="col-4">
+                                @if($berita->foto)
+                                    <img src="{{ Storage::url($berita->foto) }}" class="img-fluid rounded-start-4"
+                                         style="height:132px;object-fit:cover;width:100%;" alt="{{ $berita->judul }}">
+                                @else
+                                    <div class="rounded-start-4 d-flex align-items-center justify-content-center berita-placeholder"
+                                         style="min-height:132px;background:linear-gradient(135deg,#0d1f3c,#1a3a6b);">
+                                        <span class="material-symbols-outlined text-white opacity-30" style="font-size:28px;">newspaper</span>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body py-3 px-3">
+                                    <small class="text-muted d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-symbols-outlined ms-sm">schedule</span>{{ $berita->created_at->diffForHumans() }}
+                                    </small>
+                                    <h6 class="fw-bold mb-3 lh-sm" style="font-size:0.875rem;">{{ Str::limit($berita->judul, 65) }}</h6>
+                                    <a href="{{ route('berita.show', $berita) }}" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                                        Baca <span class="material-symbols-outlined ms-sm">arrow_forward_ios</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                {{-- More berita indicator if there are more --}}
+                @if($beritaTerbaru->count() > 3)
+                <div class="reveal" style="transition-delay:0.28s">
+                    <a href="{{ route('berita.index') }}" class="card border-0 shadow-sm rounded-4 text-decoration-none d-flex align-items-center justify-content-center py-4"
+                       style="border:2px dashed var(--bs-border-color) !important;background:transparent;">
+                        <span class="material-symbols-outlined text-muted ms-lg">add_circle</span>
+                        <span class="text-muted small mt-1">Lihat {{ $beritaTerbaru->count() - 3 }} berita lainnya</span>
+                    </a>
+                </div>
+                @endif
+            </div>
+        </div>
+        @endif
+    </div>
+</section>
+
+{{-- ── FITUR UTAMA ───────────────────────────────────────── --}}
+<section class="py-5 section-light">
+    <div class="container">
+        <div class="text-center mb-5 reveal">
+            <span class="badge bg-primary rounded-pill px-3 py-2 mb-3">Platform SIPDA</span>
+            <h2 class="fw-bold mb-2">Fitur Utama Sistem</h2>
+            <p class="text-muted" style="max-width:480px;margin:0 auto;">Teknologi modern untuk keselamatan dan kesiapsiagaan warga Kota Bandung</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 reveal" style="transition-delay:0.05s">
+                <div class="feature-card h-100 shadow-sm" style="background:linear-gradient(135deg,rgba(99,102,241,.06),rgba(139,92,246,.04));border:1px solid rgba(99,102,241,.12);">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
+                        <span class="material-symbols-outlined msf text-white ms-md">sensors</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Pemantauan Real-time</h5>
+                    <p class="text-muted small mb-0">Data bencana terkini diperbarui langsung oleh petugas BPBD. Status tersedia 24 jam sehari, 7 hari seminggu tanpa henti.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal" style="transition-delay:0.1s">
+                <div class="feature-card h-100 shadow-sm" style="background:linear-gradient(135deg,rgba(14,165,233,.06),rgba(6,182,212,.04));border:1px solid rgba(14,165,233,.12);">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4);">
+                        <span class="material-symbols-outlined msf text-white ms-md">campaign</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Laporan Masyarakat</h5>
+                    <p class="text-muted small mb-0">Warga dapat melaporkan kejadian bencana langsung dari aplikasi. Setiap laporan diverifikasi petugas berpengalaman BPBD.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal" style="transition-delay:0.15s">
+                <div class="feature-card h-100 shadow-sm" style="background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(5,150,105,.04));border:1px solid rgba(16,185,129,.12);">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#10b981,#059669);">
+                        <span class="material-symbols-outlined msf text-white ms-md">map</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Peta Interaktif</h5>
+                    <p class="text-muted small mb-0">Visualisasi sebaran bencana di peta Kota Bandung secara interaktif dengan keterangan status, lokasi, dan informasi terkini.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ── CTA (guests only) ────────────────────────────────── --}}
+@guest
+<section class="py-5 cta-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-white reveal">
+                <span class="badge bg-white text-primary fw-bold mb-3 px-3 py-2">Gratis Selamanya</span>
+                <h2 class="fw-black mb-3 lh-sm">Ikut Menjaga Keselamatan<br>Kota Bandung</h2>
+                <p class="fs-5 mb-4 opacity-75">Daftarkan diri dan bantu petugas BPBD merespons bencana lebih cepat dengan laporan langsung dari lapangan.</p>
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="cta-benefit">
+                        <div class="cta-benefit-icon"><span class="material-symbols-outlined msf ms-sm">check_circle</span></div>
+                        Kirim laporan bencana langsung ke BPBD
+                    </div>
+                    <div class="cta-benefit">
+                        <div class="cta-benefit-icon"><span class="material-symbols-outlined msf ms-sm">check_circle</span></div>
+                        Pantau status penanganan laporan Anda
+                    </div>
+                    <div class="cta-benefit">
+                        <div class="cta-benefit-icon"><span class="material-symbols-outlined msf ms-sm">check_circle</span></div>
+                        Akses peta bencana aktif Kota Bandung
+                    </div>
+                </div>
+                <a href="{{ route('register') }}" class="btn btn-warning btn-lg fw-bold px-5 d-inline-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined msf">person_add</span>Daftar Gratis Sekarang
+                </a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center reveal" style="transition-delay:0.18s">
+                <span class="material-symbols-outlined msf text-white" style="font-size:180px;opacity:0.12;">security</span>
+            </div>
+        </div>
+    </div>
+</section>
+@endguest
 
 @endsection
 
 @push('scripts')
 {{-- ══════════════════════════════════════════
-     DARK MODE TOGGLE — DIPERBAIKI
-══════════════════════════════════════════ --}}
-<script>
-(function() {
-    const toggle = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const html = document.documentElement;
-    
-    // Cek saved theme
-    const savedTheme = localStorage.getItem('sipda-theme');
-    if (savedTheme === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-        icon.textContent = 'light_mode';
-    } else {
-        html.removeAttribute('data-theme');
-        icon.textContent = 'dark_mode';
-    }
-    
-    toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const isDark = html.getAttribute('data-theme') === 'dark';
-        
-        if (isDark) {
-            html.removeAttribute('data-theme');
-            icon.textContent = 'dark_mode';
-            localStorage.setItem('sipda-theme', 'light');
-            console.log('✅ Switched to LIGHT mode');
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            icon.textContent = 'light_mode';
-            localStorage.setItem('sipda-theme', 'dark');
-            console.log('✅ Switched to DARK mode');
-        }
-        
-        // Update map
-        if (window.updateMapTheme) {
-            window.updateMapTheme();
-        }
-    });
-    
-    console.log('✅ Dark mode toggle initialized');
-})();
-</script>
-
-{{-- ══════════════════════════════════════════
-     LEAFLET MAP — Dengan fix error 403
+     LEAFLET MAP
 ══════════════════════════════════════════ --}}
 <script>
 (function() {
@@ -1335,8 +1686,8 @@ body {
         Aman: '#10B981'
     };
 
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const tileUrl = isDark 
+    const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    const tileUrl = isDark
         ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
         : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 
@@ -1515,17 +1866,17 @@ body {
         if (e.key === 'Enter') performSearch();
     });
 
-    // ── Update map theme ──
+    // ── Update map theme when data-bs-theme changes ──
     window.updateMapTheme = function() {
-        const isDarkNow = document.documentElement.getAttribute('data-theme') === 'dark';
-        const newUrl = isDarkNow 
+        const isDarkNow = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        const newUrl = isDarkNow
             ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
             : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
         tiles.setUrl(newUrl);
     };
 
     const observer = new MutationObserver(window.updateMapTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
 
 })();
 </script>
