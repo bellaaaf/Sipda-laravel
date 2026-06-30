@@ -58,7 +58,8 @@
             <ul class="navbar-nav align-items-center gap-3">
                 <li class="nav-item">
                     <button class="theme-toggle btn" id="themeToggle" title="Ganti tema">
-                        <span class="material-symbols-outlined ms-sm" id="themeIcon">dark_mode</span>
+                        <span class="material-symbols-outlined ms-sm theme-icon-dark">dark_mode</span>
+                        <span class="material-symbols-outlined ms-sm theme-icon-light">light_mode</span>
                     </button>
                 </li>
                 @guest
@@ -698,22 +699,13 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     (function() {
-        const html   = document.documentElement;
         const toggle = document.getElementById('themeToggle');
-        const icon   = document.getElementById('themeIcon');
-
-        function syncIcon(theme) {
-            if (icon) icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
-        }
-
-        syncIcon(html.getAttribute('data-bs-theme'));
-
         if (toggle) {
             toggle.addEventListener('click', function () {
+                const html = document.documentElement;
                 const next = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
                 html.setAttribute('data-bs-theme', next);
                 localStorage.setItem('sipda-theme', next);
-                syncIcon(next);
             });
         }
     })();

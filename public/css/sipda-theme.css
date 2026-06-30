@@ -204,6 +204,12 @@ main {
     transform: none !important;
 }
 
+/* Theme toggle icon/label: CSS-driven, no JS flash */
+[data-bs-theme="light"] .theme-icon-light { display: none !important; }
+[data-bs-theme="dark"]  .theme-icon-dark  { display: none !important; }
+[data-bs-theme="light"] .theme-label-light { display: none !important; }
+[data-bs-theme="dark"]  .theme-label-dark  { display: none !important; }
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .sipda-footer {
     padding: 3rem 0 2rem;

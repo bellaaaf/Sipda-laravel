@@ -83,8 +83,10 @@
                 <span class="material-symbols-outlined ms-sm">home</span>Ke Beranda
             </a>
             <button class="theme-toggle btn d-flex align-items-center gap-2" id="themeToggle" title="Ganti tema">
-                <span class="material-symbols-outlined ms-sm" id="themeIcon">dark_mode</span>
-                <span id="themeLabel">Mode Gelap</span>
+                <span class="material-symbols-outlined ms-sm theme-icon-dark">dark_mode</span>
+                <span class="material-symbols-outlined ms-sm theme-icon-light">light_mode</span>
+                <span class="theme-label-dark">Mode Gelap</span>
+                <span class="theme-label-light">Mode Terang</span>
             </button>
         </div>
     </div>
@@ -114,24 +116,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     (function() {
-        const html   = document.documentElement;
         const toggle = document.getElementById('themeToggle');
-        const icon   = document.getElementById('themeIcon');
-        const label  = document.getElementById('themeLabel');
-
-        function syncUI(theme) {
-            if (icon)  icon.textContent  = theme === 'dark' ? 'light_mode' : 'dark_mode';
-            if (label) label.textContent = theme === 'dark' ? 'Mode Terang' : 'Mode Gelap';
-        }
-
-        syncUI(html.getAttribute('data-bs-theme'));
-
         if (toggle) {
             toggle.addEventListener('click', function () {
+                const html = document.documentElement;
                 const next = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
                 html.setAttribute('data-bs-theme', next);
                 localStorage.setItem('sipda-theme', next);
-                syncUI(next);
             });
         }
     })();
