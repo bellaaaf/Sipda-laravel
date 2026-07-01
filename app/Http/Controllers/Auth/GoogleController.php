@@ -11,6 +11,8 @@ class GoogleController extends Controller
 {
     public function redirect()
     {
+        $redirectUrl = config('services.google.redirect');
+        dd('Redirect URI yang dikirim ke Google: ' . $redirectUrl);
         return Socialite::driver('google')->redirect();
     }
 
